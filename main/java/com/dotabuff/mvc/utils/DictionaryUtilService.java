@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Init;
+//import javax.ejb.Init;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

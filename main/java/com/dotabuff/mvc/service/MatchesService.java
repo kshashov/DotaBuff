@@ -1,5 +1,6 @@
 package com.dotabuff.mvc.service;
 
+import com.dotabuff.mvc.model.Item;
 import com.dotabuff.mvc.model.Match;
 import com.dotabuff.mvc.model.UserInMatch;
 import com.dotabuff.mvc.utils.Constants;
@@ -31,8 +32,8 @@ public class MatchesService {
 
     @Autowired
     public MatchesService(DictionaryUtilService dictionaryUtilService,ItemsService itemsService){
-        dictionaryUtilService = dictionaryUtilService;
-        itemsService = itemsService;
+        this.dictionaryUtilService = dictionaryUtilService;
+        this.itemsService = itemsService;
     }
 
     private List<String> getLastMatchesIds(String playerId, int count) {
@@ -144,30 +145,30 @@ public class MatchesService {
             kda.add(player.getInt("deaths"));
             kda.add(player.getInt("assists"));
             userInMatch.setKda(kda);
-
+            List<Item> items = new ArrayList<Item>();
             if (player.getInt("item_0") != 0) {
-                userInMatch.getItems().add(itemsService.getItem(player.getInt("item_0")));
+                items.add(itemsService.getItem(player.getInt("item_0")));
             }
             if (player.getInt("item_1") != 0) {
-                userInMatch.getItems().add(itemsService.getItem(player.getInt("item_0")));
+                items.add(itemsService.getItem(player.getInt("item_1")));
             }
             if (player.getInt("item_2") != 0) {
-                userInMatch.getItems().add(itemsService.getItem(player.getInt("item_0")));
+                items.add(itemsService.getItem(player.getInt("item_2")));
             }
             if (player.getInt("item_3") != 0) {
-                userInMatch.getItems().add(itemsService.getItem(player.getInt("item_0")));
+                items.add(itemsService.getItem(player.getInt("item_3")));
             }
             if (player.getInt("item_4") != 0) {
-                userInMatch.getItems().add(itemsService.getItem(player.getInt("item_0")));
+                items.add(itemsService.getItem(player.getInt("item_4")));
             }
             if (player.getInt("item_5") != 0) {
-                userInMatch.getItems().add(itemsService.getItem(player.getInt("item_0")));
+                items.add(itemsService.getItem(player.getInt("item_5")));
             }
-
+            userInMatch.setItems(items);
             if (player.getInt("player_slot") < 5) {
-                radientPlayersList.add(i, userInMatch);
+                radientPlayersList.add(userInMatch);
             } else {
-                direPlayersList.add(i, userInMatch);
+                direPlayersList.add(userInMatch);
             }
         }
 

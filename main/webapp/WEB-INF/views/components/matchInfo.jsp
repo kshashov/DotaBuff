@@ -60,7 +60,6 @@
             <th>
                 KDA
             </th>
-            ]
             <th>
                 Items
             </th>

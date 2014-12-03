@@ -35,6 +35,6 @@
 </td>
 <td>
     <c:forEach var="item" items="${player.items}">
-        <img src = "../resources/items/${item.name}_ld.png" style="height:20px"/>
+        <img src = "../resources/items/${item.name}_lg.png" style="height:40px"/>
     </c:forEach>
 </td>
