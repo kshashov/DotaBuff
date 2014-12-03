@@ -27,9 +27,9 @@
         <td>
             <fmt:timeZone value="UTC">
                 <fmt:formatDate value="${match.startTime}" type="both"
-                                pattern="yyyy-MM-dd HH:mm:ss" var = "time"/>
+                                pattern="yyyy-MM-dd HH:mm:ss" var="time"/>
             </fmt:timeZone>
-            <time datetime = '${time}Z'  data-format="HH:mm D.MM.YYYY"></time>
+            <time datetime='${time}Z' data-format="HH:mm D.MM.YYYY"></time>
         </td>
         <td>
             <c:out value="${match.lobbieType}"/>
@@ -60,13 +60,19 @@
             <th>
                 KDA
             </th>
+            ]
+            <th>
+                Items
+            </th>
             </thead>
+            <tbody>
             <c:forEach var="player" items="${match.radientPlayers}">
                 <tr>
-                    <c:set var="player" scope="request" value="${player}" />
+                    <c:set var="player" scope="request" value="${player}"/>
                     <jsp:include page="matchRow.jsp"/>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
     </div>
 </div>
@@ -86,13 +92,18 @@
             <th>
                 KDA
             </th>
+            <th>
+                Items
+            </th>
             </thead>
-            <c:forEach  var="player" items="${match.direPlayers}">
+            <tbody>
+            <c:forEach var="player" items="${match.direPlayers}">
                 <tr>
-                    <c:set var="player" scope="request" value="${player}" />
+                    <c:set var="player" scope="request" value="${player}"/>
                     <jsp:include page="matchRow.jsp"/>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
     </div>
 </div>
