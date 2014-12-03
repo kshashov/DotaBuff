@@ -9,13 +9,21 @@ import java.util.List;
 public class UserInMatch {
     private boolean win;
     private String hero;
-    private List<Item> items;
     private String leaverStatus;
     private String locHero;
     private List<Integer> kda;
     private String id;
     private BigInteger steamId;
     private String personaName;
+    private List<Item> items;
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
     public String getLeaverStatus() {
         return leaverStatus;

@@ -27,10 +27,12 @@ import java.util.*;
 @Component
 public class MatchesService {
     private DictionaryUtilService dictionaryUtilService;
+    private ItemsService itemsService;
 
     @Autowired
-    public MatchesService(DictionaryUtilService dictionaryUtilService){
+    public MatchesService(DictionaryUtilService dictionaryUtilService,ItemsService itemsService){
         dictionaryUtilService = dictionaryUtilService;
+        itemsService = itemsService;
     }
 
     private List<String> getLastMatchesIds(String playerId, int count) {
@@ -142,6 +144,26 @@ public class MatchesService {
             kda.add(player.getInt("deaths"));
             kda.add(player.getInt("assists"));
             userInMatch.setKda(kda);
+
+            if (player.getInt("item_0") != 0) {
+                userInMatch.getItems().add(itemsService.getItem(player.getInt("item_0")));
+            }
+            if (player.getInt("item_1") != 0) {
+                userInMatch.getItems().add(itemsService.getItem(player.getInt("item_0")));
+            }
+            if (player.getInt("item_2") != 0) {
+                userInMatch.getItems().add(itemsService.getItem(player.getInt("item_0")));
+            }
+            if (player.getInt("item_3") != 0) {
+                userInMatch.getItems().add(itemsService.getItem(player.getInt("item_0")));
+            }
+            if (player.getInt("item_4") != 0) {
+                userInMatch.getItems().add(itemsService.getItem(player.getInt("item_0")));
+            }
+            if (player.getInt("item_5") != 0) {
+                userInMatch.getItems().add(itemsService.getItem(player.getInt("item_0")));
+            }
+
             if (player.getInt("player_slot") < 5) {
                 radientPlayersList.add(i, userInMatch);
             } else {
