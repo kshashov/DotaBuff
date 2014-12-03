@@ -18,6 +18,26 @@ public class Match {
 
     private Time duration;
     private String gameMode;
+    private UserInMatch userInMatch;
+    private List<UserInMatch> direPlayers;
+
+    public List<UserInMatch> getRadientPlayers() {
+        return radientPlayers;
+    }
+
+    public void setRadientPlayers(List<UserInMatch> radientPlayers) {
+        this.radientPlayers = radientPlayers;
+    }
+
+    public List<UserInMatch> getDirePlayers() {
+        return direPlayers;
+    }
+
+    public void setDirePlayers(List<UserInMatch> direPlayers) {
+        this.direPlayers = direPlayers;
+    }
+
+    private List<UserInMatch> radientPlayers;
 
     public String getLobbieType() {
         return lobbieType;
@@ -36,10 +56,6 @@ public class Match {
     public void setUserInMatch(UserInMatch userInMatch) {
         this.userInMatch = userInMatch;
     }
-
-    private UserInMatch userInMatch;
-
-    private List<UserInMatch> players;
 
     public String getId() {
         return id;
@@ -81,15 +97,5 @@ public class Match {
     public void setGameMode(String gameMode) {
         this.gameMode = gameMode;
     }
-
-
-    public List<UserInMatch> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<UserInMatch> players) {
-        this.players = players;
-    }
-
 
 }

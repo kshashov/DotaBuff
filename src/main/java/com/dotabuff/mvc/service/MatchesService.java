@@ -128,7 +128,8 @@ public class MatchesService {
         match.setDuration(new Time(matchJSON.getLong("duration")*1000));
 
         JSONArray players = matchJSON.getJSONArray("players");
-        ArrayList<UserInMatch> playersList = new ArrayList<UserInMatch>();
+        ArrayList<UserInMatch> direPlayersList = new ArrayList<UserInMatch>();
+        ArrayList<UserInMatch> radientPlayersList = new ArrayList<UserInMatch>();
         for (int i = 0; i < players.length() ; i++) {
             JSONObject player = players.getJSONObject(i);
             UserInMatch userInMatch = getUserInMath(String.valueOf(player.getInt("account_id")));
@@ -141,10 +142,15 @@ public class MatchesService {
             kda.add(player.getInt("deaths"));
             kda.add(player.getInt("assists"));
             userInMatch.setKda(kda);
-            playersList.add(i, userInMatch);
+            if (player.getInt("player_slot") < 5) {
+                radientPlayersList.add(i, userInMatch);
+            } else {
+                direPlayersList.add(i, userInMatch);
+            }
         }
 
-        match.setPlayers(playersList);
+        match.setDirePlayers(direPlayersList);
+        match.setRadientPlayers(radientPlayersList);
         return match;
     }
 

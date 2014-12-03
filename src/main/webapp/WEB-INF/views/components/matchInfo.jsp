@@ -61,9 +61,9 @@
                 KDA
             </th>
             </thead>
-            <c:forEach var="i" begin="0" end="4">
+            <c:forEach var="player" items="${match.radientPlayers}">
                 <tr>
-                    <c:set var="player" scope="request" value="${match.players[i]}" />
+                    <c:set var="player" scope="request" value="${player}" />
                     <jsp:include page="matchRow.jsp"/>
                 </tr>
             </c:forEach>
@@ -87,9 +87,9 @@
                 KDA
             </th>
             </thead>
-            <c:forEach var="i" begin="5" end="9">
+            <c:forEach  var="player" items="${match.direPlayers}">
                 <tr>
-                    <c:set var="player" scope="request" value="${match.players[i]}" />
+                    <c:set var="player" scope="request" value="${player}" />
                     <jsp:include page="matchRow.jsp"/>
                 </tr>
             </c:forEach>
