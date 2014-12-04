@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -46,6 +47,9 @@ public class PlayersController {
      */
     @RequestMapping(value = {"/players/{playerId}"}, method = RequestMethod.GET)
     public ModelAndView player(@PathVariable String playerId, Locale locale) {
+        if (playerId.length() == 17) {
+            playerId = UtilsHelper.idTo32(new BigInteger(playerId)).toString();
+        }
         ModelAndView mv = new ModelAndView("player");
         mv.addObject("playerId", playerId);
         mv.addObject("player", playerService.getPlayer(playerId));
