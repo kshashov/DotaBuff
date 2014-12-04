@@ -19,7 +19,7 @@
             Аноним
         </c:when>
         <c:otherwise>
-            <a href="../players/${player.id}"><c:out
+            <a href="${player.url}"><c:out
                     value="${player.personaName}"/></a>
         </c:otherwise>
     </c:choose>
@@ -35,6 +35,6 @@
 </td>
 <td>
     <c:forEach var="item" items="${player.items}">
-        <img src = "../resources/items/${item.name}_lg.png" style="height:40px"/>
+        <img src = "${item.imageSrc}" style="height:40px"/>
     </c:forEach>
 </td>

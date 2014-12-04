@@ -31,7 +31,7 @@ public class MatchesService {
     private ItemsService itemsService;
 
     @Autowired
-    public MatchesService(DictionaryUtilService dictionaryUtilService,ItemsService itemsService){
+    public MatchesService(DictionaryUtilService dictionaryUtilService, ItemsService itemsService) {
         this.dictionaryUtilService = dictionaryUtilService;
         this.itemsService = itemsService;
     }
@@ -59,7 +59,7 @@ public class MatchesService {
     }
 
 
-    private Match createMatch(String id, String playerId){
+    private Match createMatch(String id, String playerId) {
         Match match = new Match();
         match.setId(id);
         Map<String, String> params = new HashMap<String, String>();
@@ -74,12 +74,13 @@ public class MatchesService {
         match.setRadiantWin(matchJSON.getBoolean("radiant_win"));
         match.setGameMode(DictionaryUtilService.getGameMode(matchJSON.getInt("game_mode")));
         match.setLobbieType(DictionaryUtilService.getLobbieType(matchJSON.getInt("lobby_type")));
-        match.setStartTime(new Date(matchJSON.getLong("start_time")*1000));
-        match.setDuration(new Time(matchJSON.getLong("duration")*1000));
+        match.setUrl(UtilsHelper.getFullUrl("matches/" + match.getId()));
+        match.setStartTime(new Date(matchJSON.getLong("start_time") * 1000));
+        match.setDuration(new Time(matchJSON.getLong("duration") * 1000));
 
         JSONArray players = matchJSON.getJSONArray("players");
         UserInMatch userInMatch = new UserInMatch();
-        for (int i = 0; i < players.length() ; i++) {
+        for (int i = 0; i < players.length(); i++) {
             if (players.getJSONObject(i).getLong("account_id") == new Long(playerId)) {
                 JSONObject player = players.getJSONObject(i);
                 userInMatch.setHero(DictionaryUtilService.getHero(player.getInt("hero_id")));
@@ -103,8 +104,8 @@ public class MatchesService {
         List<Match> matches = new ArrayList<Match>();
         for (String matchesId : matchesIds) {
             Match match = createMatch(matchesId, playerId);
-         //   match.getStartTime().
-           // match.setStartTime(match.getStartTime());
+            //   match.getStartTime().
+            // match.setStartTime(match.getStartTime());
             matches.add(match);
         }
 
@@ -127,15 +128,16 @@ public class MatchesService {
         match.setRadiantWin(matchJSON.getBoolean("radiant_win"));
         match.setGameMode(DictionaryUtilService.getGameMode(matchJSON.getInt("game_mode")));
         match.setLobbieType(DictionaryUtilService.getLobbieType(matchJSON.getInt("lobby_type")));
-        match.setStartTime(new Date(matchJSON.getLong("start_time")*1000));
-        match.setDuration(new Time(matchJSON.getLong("duration")*1000));
+        match.setStartTime(new Date(matchJSON.getLong("start_time") * 1000));
+        match.setDuration(new Time(matchJSON.getLong("duration") * 1000));
 
         JSONArray players = matchJSON.getJSONArray("players");
         ArrayList<UserInMatch> direPlayersList = new ArrayList<UserInMatch>();
         ArrayList<UserInMatch> radientPlayersList = new ArrayList<UserInMatch>();
-        for (int i = 0; i < players.length() ; i++) {
+        for (int i = 0; i < players.length(); i++) {
             JSONObject player = players.getJSONObject(i);
             UserInMatch userInMatch = getUserInMath(String.valueOf(player.getInt("account_id")));
+            userInMatch.setUrl(UtilsHelper.getFullUrl("players/" + userInMatch.getId()));
             userInMatch.setHero(DictionaryUtilService.getHero(player.getInt("hero_id")));
             userInMatch.setLocHero(DictionaryUtilService.getLocHero(player.getInt("hero_id")));
             userInMatch.setLeaverStatus(DictionaryUtilService.getLeaverStatus(player.getInt("leaver_status")));
@@ -177,7 +179,7 @@ public class MatchesService {
         return match;
     }
 
-    public UserInMatch getUserInMath(String id){
+    public UserInMatch getUserInMath(String id) {
         UserInMatch userInMatch = new UserInMatch();
         userInMatch.setId(id);
         userInMatch.setSteamId(UtilsHelper.idTo64(new BigInteger(id)));
@@ -191,7 +193,7 @@ public class MatchesService {
 
         JSONObject matchJSON = (JSONObject) response.getBody().getObject().get("response");
         JSONArray players = matchJSON.getJSONArray("players");
-        for (int i = 0; i < players.length() ; i++) {
+        for (int i = 0; i < players.length(); i++) {
             JSONObject player = players.getJSONObject(i);
             userInMatch.setPersonaName(player.getString("personaname"));
         }

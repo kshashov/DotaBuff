@@ -5,6 +5,7 @@ import com.dotabuff.mvc.model.Player;
 import com.dotabuff.mvc.service.MatchesService;
 import com.dotabuff.mvc.service.PlayerService;
 import com.dotabuff.mvc.utils.Constants;
+import com.dotabuff.mvc.utils.UtilsHelper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -48,13 +49,16 @@ public class PlayersController {
         ModelAndView mv = new ModelAndView("player");
         mv.addObject("playerId", playerId);
         mv.addObject("player", playerService.getPlayer(playerId));
+        mv.addObject("urls", UtilsHelper.getUrls());
         mv.addObject("matches", matchesService.getLastMatches(locale, playerId, 5));
         return mv;
     }
 
     @RequestMapping(value = {"/players"}, method = RequestMethod.GET)
     public ModelAndView searchPlayer(Model model) {
-        return new ModelAndView("search_player", "player", new Player());
+        ModelAndView mv =  new ModelAndView("search_player", "player", new Player());
+        mv.addObject("urls", UtilsHelper.getUrls());
+        return mv;
     }
 
     @RequestMapping(value = {"/players"}, method = RequestMethod.POST)

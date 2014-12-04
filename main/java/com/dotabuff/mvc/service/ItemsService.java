@@ -2,6 +2,7 @@ package com.dotabuff.mvc.service;
 
 import com.dotabuff.mvc.model.Item;
 import com.dotabuff.mvc.utils.DictionaryUtilService;
+import com.dotabuff.mvc.utils.UtilsHelper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -55,7 +56,12 @@ public class ItemsService {
                 JSONObject itemJson = (JSONObject) jsonArray.get(i);
                 item.setId(String.valueOf((Long) itemJson.get("id")));
                 item.setName((String) itemJson.get("name"));
-                items.put(String.valueOf(itemJson.get("id")), item);
+                if (item.getName().indexOf("recipe") <= 0) {
+                    item.setImageSrc(UtilsHelper.getFullUrl("resources/items/" + item.getName() + "_lg.png"));
+                } else {
+                    item.setImageSrc(UtilsHelper.getFullUrl("resources/items/recipe_lg.png"));
+                }
+                items.put(item.getId(), item);
             }
 
 
@@ -71,7 +77,7 @@ public class ItemsService {
         if (items == null) {
             initItems();
         }
-        if (id > 0 && id < items.size()) {
+        if (items.get(String.valueOf(id)) != null) {
             return items.get(String.valueOf(id));
         }
         return null;

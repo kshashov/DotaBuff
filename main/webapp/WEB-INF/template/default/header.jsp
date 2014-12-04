@@ -20,9 +20,9 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Players</a></li>
-                    <li><a href="#">Matches</a></li>
+                    <li class="active"><a href="${urls['home']}">Home</a></li>
+                    <li><a href="${urls['players']}">Players</a></li>
+                    <li><a href="${urls['matches']}">Matches</a></li>
                 </ul>
                 <!--<ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="../../">Ноme</a></li>

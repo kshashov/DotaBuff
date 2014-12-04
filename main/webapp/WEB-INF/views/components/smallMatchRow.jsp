@@ -17,7 +17,7 @@
     <c:out value="${match.userInMatch.locHero}"/>
 </td>
 <td>
-    <a href="../matches/${match.id}">
+    <a href="${match.url}">
         <div>
             <c:choose>
                 <c:when test="${match.userInMatch.leaverStatus != ''}">

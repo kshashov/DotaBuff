@@ -11,7 +11,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>DotaBuff</title>
-    <link href="../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="${urls['bootstrap.min.css']}" rel="stylesheet"/>
     <style type="text/css">
         table td {
             vertical-align: middle !important;
@@ -74,14 +74,14 @@
 <div class="page">
     <tiles:insertAttribute name="header"/>
     <div class="content">
-        <!-- <tiles:insertAttribute name="menu" />-->
+       
         <tiles:insertAttribute name="body"/>
     </div>
     <tiles:insertAttribute name="footer"/>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="../resources/moment.js"></script>
+<script src="${urls['jquery']}"></script>
+<script src="${urls['bootstrap.min.js']}"></script>
+<script src="${urls['moment.js']}"></script>
 <script>
     $(function () {
         $("time[data-format]").each(function () {

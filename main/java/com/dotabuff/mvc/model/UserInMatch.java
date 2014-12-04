@@ -17,6 +17,16 @@ public class UserInMatch {
     private String personaName;
     private List<Item> items;
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    private String url;
+
     public List<Item> getItems() {
         return items;
     }

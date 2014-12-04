@@ -23,4 +23,14 @@ public class Item {
     private String id;
     private String name;
 
+    public String getImageSrc() {
+        return imageSrc;
+    }
+
+    public void setImageSrc(String imageSrc) {
+        this.imageSrc = imageSrc;
+    }
+
+    private String imageSrc;
+
 }

@@ -3,6 +3,7 @@ package com.dotabuff.mvc;
 import com.dotabuff.mvc.model.Match;
 import com.dotabuff.mvc.model.Player;
 import com.dotabuff.mvc.service.MatchesService;
+import com.dotabuff.mvc.utils.UtilsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,12 +37,15 @@ public class MatchesController {
         ModelAndView mv = new ModelAndView("match");
         mv.addObject("matchId", matchId);
         mv.addObject("match", matchesService.getFullMatch(locale, matchId));
+        mv.addObject("urls", UtilsHelper.getUrls());
         return mv;
     }
 
     @RequestMapping(value = {"/matches"}, method = RequestMethod.GET)
     public ModelAndView searchPlayer(Model model) {
-        return new ModelAndView("search_match", "match", new Match());
+        ModelAndView mv =  new ModelAndView("search_match", "match", new Match());
+        mv.addObject("urls", UtilsHelper.getUrls());
+        return mv;
     }
 
     @RequestMapping(value = {"/matches"}, method = RequestMethod.POST)
