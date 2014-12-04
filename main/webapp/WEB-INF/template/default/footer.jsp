@@ -5,4 +5,4 @@
   Time: 8:27
   To change this template use File | Settings | File Templates.
 --%>
-<div class="footer">I am the Footer !</div>
+<!--<div class="footer">I am the Footer !</div>-->

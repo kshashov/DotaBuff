@@ -10,8 +10,9 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>DotaBuff</title>
-    <link href="${urls['bootstrap.min.css']}" rel="stylesheet"/>
+    <title>YOBADOTA</title>
+   <link href="${urls['bootstrap.min.css']}" rel="stylesheet"/>
+    <!--  <link href="http://shashov.com:8080/DotaBuff/resources/local.css" rel="stylesheet"/>-->
     <style type="text/css">
         table td {
             vertical-align: middle !important;
@@ -26,12 +27,10 @@
             margin: 0px;
             padding: 0px;
             height: 100%;
-            overflow: hidden;
         }
 
         .page {
             min-height: 100%;
-            position: relative;
             max-width: 1000px;
             margin: 0 auto;
         }
@@ -74,7 +73,7 @@
 <div class="page">
     <tiles:insertAttribute name="header"/>
     <div class="content">
-       
+
         <tiles:insertAttribute name="body"/>
     </div>
     <tiles:insertAttribute name="footer"/>

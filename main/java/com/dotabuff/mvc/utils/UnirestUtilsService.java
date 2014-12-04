@@ -5,6 +5,7 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,9 +22,15 @@ public class UnirestUtilsService {
 
     public static final String ITEMS_URL = "https://api.steampowered.com/IEconDOTA2_570/GetGameItems/v0001/?";
 
+    public static final String RESOLVE_ID = "http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?";
+
     private static final String fillUrlFromParams(String url, Map<String, String> params){
         params.put("format","JSON");
         params.put("key", Constants.QUERY_AUTH_API);
+
+        for (String key: params.keySet()){
+            params.put(key, URLEncoder.encode(params.get(key)));
+        }
 
         StringBuilder sb = new StringBuilder(url);
         for (String param : params.keySet()) {
@@ -85,6 +92,18 @@ public class UnirestUtilsService {
 
         try {
             response = Unirest.get(fillUrlFromParams(PLAYER_URL, params)).asJson();
+        } catch (UnirestException e) {
+
+        }
+        return response;
+
+    }
+
+    public static final HttpResponse<JsonNode> getResolveUrlResponse(Map<String, String> params){
+        HttpResponse<JsonNode> response = null;
+
+        try {
+            response = Unirest.get(fillUrlFromParams(RESOLVE_ID, params)).asJson();
         } catch (UnirestException e) {
 
         }

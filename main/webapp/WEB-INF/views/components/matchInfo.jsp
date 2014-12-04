@@ -8,6 +8,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<div class="center-block" style = "text-align: center">
+    <h1>
+        <c:choose>
+            <c:when test="${match.radiantWin}">
+                <span class="label label-success">RADIANT VICTORY</span>
+            </c:when>
+            <c:otherwise>
+                <span class="label label-danger">DIRE VICTORY</span>
+            </c:otherwise>
+        </c:choose>
+    </h1>
+</div>
 <table class="table">
     <thead>
     <th>
@@ -61,32 +73,43 @@
                 Игрок
             </th>
             <th>
-                KDA
+                K
+            </th>
+            <th>
+                D
+            </th>
+            <th>
+                A
             </th>
             <th>
                 Items
             </th>
             </thead>
             <tbody>
-            <c:forEach var="player" items="${match.radientPlayers}">
+            <c:forEach var="player" items="${match.radiantPlayers}">
                 <tr>
-                    <c:set var="player" value="${player}"/>
+                    <c:set var="player" value="${player}" scope="request"/>
                     <c:set var="radiantK" value="${radiantK+player.kda[0]}"/>
-                    <c:set var="radiantD" value="${radiantK+player.kda[1]}"/>
-                    <c:set var="radiantA" value="${radiantK+player.kda[2]}"/>
+                    <c:set var="radiantD" value="${radiantD+player.kda[1]}"/>
+                    <c:set var="radiantA" value="${radiantA+player.kda[2]}"/>
                     <jsp:include page="matchRow.jsp"/>
                 </tr>
             </c:forEach>
             <tr>
                 <td></td>
                 <td></td>
-                <td><c:out value="${radiantK}"/>/<c:out value="${radiantD}"/>/<c:out value="${radiantA}"/></td>
+                <td><c:out value="${radiantK}"/></td>
+                <td><c:out value="${radiantD}"/></td>
+                <td><c:out value="${radiantA}"/></td>
                 <td></td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
+<c:set var="direK" value="${0}"/>
+<c:set var="direD" value="${0}"/>
+<c:set var="direA" value="${0}"/>
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Тьма</h3>
@@ -101,7 +124,13 @@
                 Игрок
             </th>
             <th>
-                KDA
+                K
+            </th>
+            <th>
+                D
+            </th>
+            <th>
+                A
             </th>
             <th>
                 Items
@@ -111,9 +140,20 @@
             <c:forEach var="player" items="${match.direPlayers}">
                 <tr>
                     <c:set var="player" scope="request" value="${player}"/>
+                    <c:set var="direK" value="${direK+player.kda[0]}"/>
+                    <c:set var="direD" value="${direD+player.kda[1]}"/>
+                    <c:set var="direA" value="${direA+player.kda[2]}"/>
                     <jsp:include page="matchRow.jsp"/>
                 </tr>
             </c:forEach>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><c:out value="${direK}"/></td>
+                <td><c:out value="${direD}"/></td>
+                <td><c:out value="${direA}"/></td>
+                <td></td>
+            </tr>
             </tbody>
         </table>
     </div>

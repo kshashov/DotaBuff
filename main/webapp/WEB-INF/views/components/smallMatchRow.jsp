@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <td>
-    <img data-src="holder.js/59x33" class="img-thumbnail" alt="hero"
+    <img data-src="holder.js/69x43" class="img-thumbnail" alt="hero"
          src="http://cdn.dota2.com/apps/dota2/images/heroes/${match.userInMatch.hero}_sb.png"
          data-holder-rendered="true">
 </td>

@@ -31,12 +31,12 @@ public class Match {
 
     private String url;
 
-    public List<UserInMatch> getRadientPlayers() {
-        return radientPlayers;
+    public List<UserInMatch> getRadiantPlayers() {
+        return radiantPlayers;
     }
 
-    public void setRadientPlayers(List<UserInMatch> radientPlayers) {
-        this.radientPlayers = radientPlayers;
+    public void setRadiantPlayers(List<UserInMatch> radientPlayers) {
+        this.radiantPlayers = radientPlayers;
     }
 
     public List<UserInMatch> getDirePlayers() {
@@ -47,7 +47,7 @@ public class Match {
         this.direPlayers = direPlayers;
     }
 
-    private List<UserInMatch> radientPlayers;
+    private List<UserInMatch> radiantPlayers;
 
     public String getLobbieType() {
         return lobbieType;

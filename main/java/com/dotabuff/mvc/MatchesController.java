@@ -44,7 +44,7 @@ public class MatchesController {
 
     @RequestMapping(value = {"/matches"}, method = RequestMethod.GET)
     public ModelAndView searchPlayer(Model model) {
-        ModelAndView mv =  new ModelAndView("search_match", "match", new Match());
+        ModelAndView mv = new ModelAndView("search_match", "match", new Match());
         mv.addObject("page", "matches");
         mv.addObject("urls", UtilsHelper.getUrls());
         return mv;
@@ -52,8 +52,14 @@ public class MatchesController {
 
     @RequestMapping(value = {"/matches"}, method = RequestMethod.POST)
     public String searchPlayerWithId(@ModelAttribute("match") Match match, BindingResult result, Model model) {
-        if (result.hasErrors()) return "redirect:/matches/";
-        return "redirect:/matches/"+match.getId();
+        if (result.hasErrors()) {
+            return "redirect:/matches/";
+        }
+        match.setId(match.getId().trim());
+        if (!UtilsHelper.isNumeric(match.getId())) {
+            return "redirect:/matches/";
+        }
+        return "redirect:/matches/" + match.getId();
     }
 
 }

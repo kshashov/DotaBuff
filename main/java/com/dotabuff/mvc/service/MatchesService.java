@@ -155,9 +155,9 @@ public class MatchesService {
                 JSONArray unitsJson = player.getJSONArray("additional_units");
                 for (int j = 0; j < unitsJson.length(); j++){
                     Unit unit = new Unit();
-                    JSONObject unitJson = unitsJson.getJSONObject(i);
+                    JSONObject unitJson = unitsJson.getJSONObject(j);
                     unit.setName(unitJson.getString("unitname"));
-                    unit.setImageSrc(UtilsHelper.getFullUrl("resources/units/" + unit.getName() + "_lg.png"));
+                    unit.setImageSrc(UtilsHelper.getFullUrl("resources/units/" + unit.getName() + ".png"));
                     unit.setItems(getItemsFromJSONObject(unitJson));
                     units.add(unit);
                 }
@@ -173,7 +173,7 @@ public class MatchesService {
         }
 
         match.setDirePlayers(direPlayersList);
-        match.setRadientPlayers(radientPlayersList);
+        match.setRadiantPlayers(radientPlayersList);
         return match;
     }
 

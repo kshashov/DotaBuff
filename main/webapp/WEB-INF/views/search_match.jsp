@@ -19,7 +19,7 @@
         <h1>Поиск матча</h1>
       </div>
       <div align="center">
-        <form:form method="POST" modelAttribute="match" class="navbar-form navbar-left">
+        <form:form method="POST" modelAttribute="match" class="navbar-form navbar-center">
           <div class="form-group" style = "display: inline-block">
             <form:input path="id" required="required" class="form-control" placeholder="ID"/>
           </div>
