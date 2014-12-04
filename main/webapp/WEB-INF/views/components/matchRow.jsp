@@ -13,7 +13,11 @@
          src="http://cdn.dota2.com/apps/dota2/images/heroes/${player.hero}_sb.png"
          data-holder-rendered="true">
     <c:forEach var="unit" items="${player.units}">
-        <br><c:out value="${unit.name}"/>
+        <br>
+        <img data-src="holder.js/59x33" class="img-thumbnail" alt="hero"
+                     src="${unit.imageSrc}"
+                     data-holder-rendered="true">
+        <c:out value="${unit.name}"/>
     </c:forEach>
 </td>
 <td>

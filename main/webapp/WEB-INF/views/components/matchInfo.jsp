@@ -44,6 +44,9 @@
         </td>
     </tr>
 </table>
+<c:set var="radiantK" value="${0}"/>
+<c:set var="radiantD" value="${0}"/>
+<c:set var="radiantA" value="${0}"/>
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Свет</h3>
@@ -67,10 +70,19 @@
             <tbody>
             <c:forEach var="player" items="${match.radientPlayers}">
                 <tr>
-                    <c:set var="player" scope="request" value="${player}"/>
+                    <c:set var="player" value="${player}"/>
+                    <c:set var="radiantK" value="${radiantK+player.kda[0]}"/>
+                    <c:set var="radiantD" value="${radiantK+player.kda[1]}"/>
+                    <c:set var="radiantA" value="${radiantK+player.kda[2]}"/>
                     <jsp:include page="matchRow.jsp"/>
                 </tr>
             </c:forEach>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><c:out value="${radiantK}"/>/<c:out value="${radiantD}"/>/<c:out value="${radiantA}"/></td>
+                <td></td>
+            </tr>
             </tbody>
         </table>
     </div>

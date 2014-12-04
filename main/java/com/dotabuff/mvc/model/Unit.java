@@ -9,6 +9,16 @@ import java.util.List;
 public class Unit {
     private String name;
 
+    public String getImageSrc() {
+        return imageSrc;
+    }
+
+    public void setImageSrc(String imageSrc) {
+        this.imageSrc = imageSrc;
+    }
+
+    private String imageSrc;
+
     public List<Item> getItems() {
         return items;
     }

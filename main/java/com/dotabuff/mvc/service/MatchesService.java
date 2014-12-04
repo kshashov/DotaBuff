@@ -157,6 +157,7 @@ public class MatchesService {
                     Unit unit = new Unit();
                     JSONObject unitJson = unitsJson.getJSONObject(i);
                     unit.setName(unitJson.getString("unitname"));
+                    unit.setImageSrc(UtilsHelper.getFullUrl("resources/units/" + unit.getName() + "_lg.png"));
                     unit.setItems(getItemsFromJSONObject(unitJson));
                     units.add(unit);
                 }
