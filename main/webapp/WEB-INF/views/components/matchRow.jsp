@@ -12,6 +12,9 @@
     <img data-src="holder.js/59x33" class="img-thumbnail" alt="hero"
          src="http://cdn.dota2.com/apps/dota2/images/heroes/${player.hero}_sb.png"
          data-holder-rendered="true">
+    <c:forEach var="unit" items="${player.units}">
+        <br><c:out value="${unit.name}"/>
+    </c:forEach>
 </td>
 <td>
     <c:choose>
@@ -36,5 +39,11 @@
 <td>
     <c:forEach var="item" items="${player.items}">
         <img src = "${item.imageSrc}" style="height:40px"/>
+    </c:forEach>
+    <c:forEach var="unit" items="${player.units}">
+        <br>
+        <c:forEach var="item" items="${unit.items}">
+            <img src = "${item.imageSrc}" style="height:40px"/>
+        </c:forEach>
     </c:forEach>
 </td>

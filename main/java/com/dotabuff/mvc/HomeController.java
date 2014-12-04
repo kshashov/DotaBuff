@@ -32,6 +32,7 @@ public class HomeController {
 
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("urls", UtilsHelper.getUrls());
+		model.addAttribute("page", "home");
 		model.addAttribute("serverTime", formattedDate );
 
 		return "home";

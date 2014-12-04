@@ -37,6 +37,7 @@ public class MatchesController {
         ModelAndView mv = new ModelAndView("match");
         mv.addObject("matchId", matchId);
         mv.addObject("match", matchesService.getFullMatch(locale, matchId));
+        mv.addObject("page", "match");
         mv.addObject("urls", UtilsHelper.getUrls());
         return mv;
     }
@@ -44,6 +45,7 @@ public class MatchesController {
     @RequestMapping(value = {"/matches"}, method = RequestMethod.GET)
     public ModelAndView searchPlayer(Model model) {
         ModelAndView mv =  new ModelAndView("search_match", "match", new Match());
+        mv.addObject("page", "matches");
         mv.addObject("urls", UtilsHelper.getUrls());
         return mv;
     }

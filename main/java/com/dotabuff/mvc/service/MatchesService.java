@@ -2,6 +2,7 @@ package com.dotabuff.mvc.service;
 
 import com.dotabuff.mvc.model.Item;
 import com.dotabuff.mvc.model.Match;
+import com.dotabuff.mvc.model.Unit;
 import com.dotabuff.mvc.model.UserInMatch;
 import com.dotabuff.mvc.utils.Constants;
 import com.dotabuff.mvc.utils.DictionaryUtilService;
@@ -147,26 +148,22 @@ public class MatchesService {
             kda.add(player.getInt("deaths"));
             kda.add(player.getInt("assists"));
             userInMatch.setKda(kda);
-            List<Item> items = new ArrayList<Item>();
-            if (player.getInt("item_0") != 0) {
-                items.add(itemsService.getItem(player.getInt("item_0")));
+            userInMatch.setItems(getItemsFromJSONObject(player));
+
+            if (player.has("additional_units")){
+                List<Unit> units = new ArrayList<Unit>();
+                JSONArray unitsJson = player.getJSONArray("additional_units");
+                for (int j = 0; j < unitsJson.length(); j++){
+                    Unit unit = new Unit();
+                    JSONObject unitJson = unitsJson.getJSONObject(i);
+                    unit.setName(unitJson.getString("unitname"));
+                    unit.setItems(getItemsFromJSONObject(unitJson));
+                    units.add(unit);
+                }
+                userInMatch.setUnits(units);
+            }   else {
+                userInMatch.setUnits(new ArrayList<Unit>());
             }
-            if (player.getInt("item_1") != 0) {
-                items.add(itemsService.getItem(player.getInt("item_1")));
-            }
-            if (player.getInt("item_2") != 0) {
-                items.add(itemsService.getItem(player.getInt("item_2")));
-            }
-            if (player.getInt("item_3") != 0) {
-                items.add(itemsService.getItem(player.getInt("item_3")));
-            }
-            if (player.getInt("item_4") != 0) {
-                items.add(itemsService.getItem(player.getInt("item_4")));
-            }
-            if (player.getInt("item_5") != 0) {
-                items.add(itemsService.getItem(player.getInt("item_5")));
-            }
-            userInMatch.setItems(items);
             if (player.getInt("player_slot") < 5) {
                 radientPlayersList.add(userInMatch);
             } else {
@@ -177,6 +174,29 @@ public class MatchesService {
         match.setDirePlayers(direPlayersList);
         match.setRadientPlayers(radientPlayersList);
         return match;
+    }
+
+    private List<Item> getItemsFromJSONObject(JSONObject object) {
+        List<Item> items = new ArrayList<Item>();
+        if (object.getInt("item_0") != 0) {
+            items.add(itemsService.getItem(object.getInt("item_0")));
+        }
+        if (object.getInt("item_1") != 0) {
+            items.add(itemsService.getItem(object.getInt("item_1")));
+        }
+        if (object.getInt("item_2") != 0) {
+            items.add(itemsService.getItem(object.getInt("item_2")));
+        }
+        if (object.getInt("item_3") != 0) {
+            items.add(itemsService.getItem(object.getInt("item_3")));
+        }
+        if (object.getInt("item_4") != 0) {
+            items.add(itemsService.getItem(object.getInt("item_4")));
+        }
+        if (object.getInt("item_5") != 0) {
+            items.add(itemsService.getItem(object.getInt("item_5")));
+        }
+        return items;
     }
 
     public UserInMatch getUserInMath(String id) {

@@ -18,7 +18,7 @@ public class AboutController {
     @RequestMapping(value = "/about", method = RequestMethod.GET)
     public String about(Model model) {
         logger.info("About page !");
-
+        model.addAttribute("page", "about");
         return "about";
     }
 
